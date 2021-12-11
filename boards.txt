@@ -1,0 +1,266 @@
+menu.cpu=Processor
+menu.clock_source=Clock source(MHz)
+menu.cpu_speed=CPU Frequency(MHz)
+menu.mode=Mode
+menu.intlib=Link libs
+menu.floatlib=float lib
+menu.userlib=user lib
+menu.vcc=Vcc Voltage
+
+########################## stc89c52_duino ####################################
+stc89c52_duino.name=STC89C52_Duino
+
+stc89c52_duino.upload.tool=stc_isp
+stc89c52_duino.upload.protocol=stc_isp
+stc89c52_duino.upload.maximum_size=61440
+stc89c52_duino.upload.maximum_idata_size=256
+stc89c52_duino.upload.maximum_xdata_size=8192
+
+stc89c52_duino.build.core=STC89
+stc89c52_duino.build.variant=STC89
+stc89c52_duino.build.board=stc89c52_duino 
+stc89c52_duino.build.mcu=STC89C52RC
+stc89c52_duino.build.clock_source=16M
+stc89c52_duino.build.f_cpu=16000000L
+
+########################## STC8F ####################################
+stc8.name=STC8A/G/H/F
+
+stc8.upload.tool=stc_isp
+stc8.upload.protocol=stc_isp
+stc8.upload.maximum_size=61440
+stc8.upload.maximum_idata_size=256
+stc8.upload.maximum_xdata_size=8192
+
+stc8.build.core=STC8
+stc8.build.series=STC8
+stc8.build.board=STC8
+
+stc8.menu.cpu.8G1K17=STC8G1K17
+stc8.menu.cpu.8G1K17.build.board=STC8G1K17
+stc8.menu.cpu.8G1K17.build.mcu=STC8G1K17
+stc8.menu.cpu.8G1K17.build.variant=STC8
+stc8.menu.cpu.8G1K17.upload.maximum_size=65536
+stc8.menu.cpu.8G1K17.upload.maximum_xdata_size=8192
+
+stc8.menu.clock_source.f30=IRC30M
+stc8.menu.clock_source.f30.build.f_cpu=30000000UL
+stc8.menu.clock_source.f27=IRC27M
+stc8.menu.clock_source.f27.build.f_cpu=27000000UL
+stc8.menu.clock_source.f24r=IRC24M
+stc8.menu.clock_source.f24r.build.f_cpu=24000000UL -DHRC=1
+stc8.menu.clock_source.f22r=IRC22.1184M
+stc8.menu.clock_source.f22r.build.f_cpu=22118400UL -DHRC=1
+stc8.menu.clock_source.f12r=IRC12M
+stc8.menu.clock_source.f12r.build.f_cpu=12000000UL -DHRC=2
+stc8.menu.clock_source.f11r=IRC11.0592M
+stc8.menu.clock_source.f11r.build.f_cpu=11059200UL -DHRC=2
+stc8.menu.clock_source.f08r=RC8M
+stc8.menu.clock_source.f08r.build.f_cpu=8000000UL  -DHRC=3
+stc8.menu.clock_source.f06r=IRC6M
+stc8.menu.clock_source.f06r.build.f_cpu=6000000UL  -DHRC=4
+stc8.menu.clock_source.f25=OC25M
+stc8.menu.clock_source.f25.build.f_cpu=25000000UL -DHXT
+stc8.menu.clock_source.f24=OC24M
+stc8.menu.clock_source.f24.build.f_cpu=24000000UL -DHXT
+stc8.menu.clock_source.f22=OC22.1184M
+stc8.menu.clock_source.f22.build.f_cpu=22118400UL -DHXT
+stc8.menu.clock_source.f20=OC20M
+stc8.menu.clock_source.f20.build.f_cpu=20000000UL -DHXT
+stc8.menu.clock_source.f18=OC18.432M
+stc8.menu.clock_source.f18.build.f_cpu=18432000UL -DHXT
+stc8.menu.clock_source.f16=OC16M
+stc8.menu.clock_source.f16.build.f_cpu=16000000UL -DHXT
+stc8.menu.clock_source.f12=OC12M
+stc8.menu.clock_source.f12.build.f_cpu=12000000UL -DHXT
+stc8.menu.clock_source.f11=OC11.0592M
+stc8.menu.clock_source.f11.build.f_cpu=11059200UL -DHXT
+stc8.menu.clock_source.f10=OC10M
+stc8.menu.clock_source.f10.build.f_cpu=10000000UL -DHXT
+stc8.menu.clock_source.f08=OC8M
+stc8.menu.clock_source.f08.build.f_cpu=8000000UL -DHXT
+stc8.menu.clock_source.f06=OC6M
+stc8.menu.clock_source.f06.build.f_cpu=6000000UL -DHXT
+
+stc8.menu.mode.large=large
+stc8.menu.mode.large.build.stdlib=large
+stc8.menu.mode.small=small
+stc8.menu.mode.small.build.stdlib=small
+stc8.menu.mode.medium=medium
+stc8.menu.mode.medium.build.stdlib=medium
+stc8.menu.mode.huge=huge
+stc8.menu.mode.huge.build.stdlib=huge
+
+stc8.menu.vcc_mv.default=default
+stc8.menu.vcc_mv.v50=+5.0V
+stc8.menu.vcc_mv.v50.build.vcc=-DMENU_VCC=5000
+stc8.menu.vcc_mv.v33=+3.3V
+stc8.menu.vcc_mv.v33.build.vcc=-DMENU_VCC=3300
+
+stc8.menu.intlib.long=int+long
+stc8.menu.intlib.long.build.ilib=-llibint -lliblong
+stc8.menu.intlib.longlong=int+long+longlong
+stc8.menu.intlib.longlong.build.ilib=-llibint -lliblong -lliblonglong
+
+stc8.menu.floatlib.none=none
+stc8.menu.floatlib.none.build.extlib={build.ilib}
+stc8.menu.floatlib.none.build.print=-DUSE_PRINTF=3
+stc8.menu.floatlib.float=float
+stc8.menu.floatlib.float.build.extlib={build.ilib} -llibfloat
+stc8.menu.floatlib.float.build.print=-DUSE_PRINTF=2
+
+########################## STC15 ####################################
+stc15.name=STC15F/L/W
+
+stc15.upload.tool=stc_isp
+stc15.upload.protocol=stc_isp
+stc15.upload.maximum_size=61440
+stc15.upload.maximum_idata_size=256
+stc15.upload.maximum_xdata_size=2048
+
+stc15.build.core=STC15
+stc15.build.series=STC15
+stc15.build.board=STC15
+
+stc15.menu.cpu.f2k60s2=STC15F2K60S2
+stc15.menu.cpu.f2k60s2.build.board=STC15F2K60S2
+stc15.menu.cpu.f2k60s2.build.mcu=STC15F2K
+stc15.menu.cpu.f2k60s2.build.variant=STC15
+stc15.menu.cpu.f2k60s2.upload.maximum_size=61440
+stc15.menu.cpu.f2k60s2.upload.maximum_xdata_size=2048
+
+stc15.menu.clock_source.f27=IRC27M
+stc15.menu.clock_source.f27.build.f_cpu=27000000L -DHXT
+stc15.menu.clock_source.f24r=IRC24M
+stc15.menu.clock_source.f24r.build.f_cpu=24000000L -DHRC=1
+stc15.menu.clock_source.f12r=IRC12M
+stc15.menu.clock_source.f12r.build.f_cpu=12000000L -DHRC=2
+stc15.menu.clock_source.f06r=IRC6M
+stc15.menu.clock_source.f06r.build.f_cpu=6000000L -DHRC=4
+stc15.menu.clock_source.f25=OC25M
+stc15.menu.clock_source.f25.build.f_cpu=25000000L -DHXT
+stc15.menu.clock_source.f24=OC24M
+stc15.menu.clock_source.f24.build.f_cpu=24000000L -DHXT
+stc15.menu.clock_source.f22=OC22.1184M
+stc15.menu.clock_source.f22.build.f_cpu=22118400L -DHXT
+stc15.menu.clock_source.f20=OC20M
+stc15.menu.clock_source.f20.build.f_cpu=20000000L -DHXT
+stc15.menu.clock_source.f18=OC18.432M
+stc15.menu.clock_source.f18.build.f_cpu=18432000UL -DHXT
+stc15.menu.clock_source.f16=OC16M
+stc15.menu.clock_source.f16.build.f_cpu=16000000L -DHXT
+stc15.menu.clock_source.f12=OC12M
+stc15.menu.clock_source.f12.build.f_cpu=12000000L -DHXT
+stc15.menu.clock_source.f11=OC11.0592M
+stc15.menu.clock_source.f11.build.f_cpu=11059200L -DHXT
+stc15.menu.clock_source.f10=OC10M
+stc15.menu.clock_source.f10.build.f_cpu=10000000L -DHXT
+stc15.menu.clock_source.f08=OC8M
+stc15.menu.clock_source.f08.build.f_cpu=8000000L -DHXT
+stc15.menu.clock_source.f06=OC6M
+stc15.menu.clock_source.f06.build.f_cpu=6000000L -DHXT
+
+stc15.menu.mode.large=large
+stc15.menu.mode.large.build.stdlib=large
+stc15.menu.mode.small=small
+stc15.menu.mode.small.build.stdlib=small
+stc15.menu.mode.medium=medium
+stc15.menu.mode.medium.build.stdlib=medium
+stc15.menu.mode.huge=huge
+stc15.menu.mode.huge.build.stdlib=huge
+
+stc15.menu.vcc_mv.default=default
+stc15.menu.vcc_mv.v50=+5.0V
+stc15.menu.vcc_mv.v50.build.vcc=-DMENU_VCC=5000
+stc15.menu.vcc_mv.v33=+3.3V
+stc15.menu.vcc_mv.v33.build.vcc=-DMENU_VCC=3300
+
+stc15.menu.intlib.long=int+long
+stc15.menu.intlib.long.build.ilib=-llibint -lliblong
+stc15.menu.intlib.longlong=int+long+longlong
+stc15.menu.intlib.longlong.build.ilib=-llibint -lliblong -lliblonglong
+
+stc15.menu.floatlib.float=float
+stc15.menu.floatlib.float.build.extlib={build.ilib} -llibfloat
+stc15.menu.floatlib.float.build.print=-DUSE_PRINTF=2
+stc15.menu.floatlib.none=none
+stc15.menu.floatlib.none.build.extlib={build.ilib}
+stc15.menu.floatlib.none.build.print=-DUSE_PRINTF=3
+
+
+########################## STC89C ####################################
+stc89.name=STC89CxRC/RD+
+
+stc89.upload.tool=stc_isp
+stc89.upload.protocol=stc_isp
+stc89.upload.maximum_size=8192
+stc89.upload.maximum_idata_size=256
+stc89.upload.maximum_xdata_size=256
+
+stc89.build.core=STC89
+stc89.build.series=STC89
+stc89.build.board=STC89C52
+
+stc89.menu.cpu.c51rc=STC89C51RC
+stc89.menu.cpu.c51rc.build.board=STC89C51RC
+stc89.menu.cpu.c51rc.build.mcu=STC89C51RC
+stc89.menu.cpu.c51rc.build.variant=STC89
+stc89.menu.cpu.c51rc.upload.maximum_size=4096
+
+stc89.menu.cpu.c52rc=STC89C52RC(8k/0.25k)
+stc89.menu.cpu.c52rc.build.board=STC89C52RC
+stc89.menu.cpu.c52rc.build.mcu=STC89C52
+stc89.menu.cpu.c52rc.build.variant=STC89
+stc89.menu.cpu.c52rc.upload.maximum_size=8192
+
+stc89.menu.clock_source.hxt25=25M
+stc89.menu.clock_source.hxt25.build.f_cpu=25000000L -DHXT
+stc89.menu.clock_source.hxt24=24M
+stc89.menu.clock_source.hxt24.build.f_cpu=24000000L -DHXT
+stc89.menu.clock_source.hxt22=22.1184M
+stc89.menu.clock_source.hxt22.build.f_cpu=22118400L -DHXT
+stc89.menu.clock_source.hxt20=20M
+stc89.menu.clock_source.hxt20.build.f_cpu=20000000L -DHXT
+stc89.menu.clock_source.hxt18=18.432M
+stc89.menu.clock_source.hxt18.build.f_cpu=18432000L -DHXT
+stc89.menu.clock_source.hxt16=16M
+stc89.menu.clock_source.hxt16.build.f_cpu=16000000L -DHXT
+stc89.menu.clock_source.hxt12=12M
+stc89.menu.clock_source.hxt12.build.f_cpu=12000000L -DHXT
+stc89.menu.clock_source.hxt11=11.0592M
+stc89.menu.clock_source.hxt11.build.f_cpu=11059200L -DHXT
+stc89.menu.clock_source.hxt10=10M
+stc89.menu.clock_source.hxt10.build.f_cpu=10000000L -DHXT
+stc89.menu.clock_source.hxt08=8M
+stc89.menu.clock_source.hxt08.build.f_cpu=8000000L -DHXT
+stc89.menu.clock_source.hxt06=6M
+stc89.menu.clock_source.hxt06.build.f_cpu=6000000L -DHXT
+
+stc89.menu.mode.large=large
+stc89.menu.mode.large.build.stdlib=large
+stc89.menu.mode.small=small
+stc89.menu.mode.small.build.stdlib=small
+stc89.menu.mode.medium=medium
+stc89.menu.mode.medium.build.stdlib=medium
+stc89.menu.mode.huge=huge
+stc89.menu.mode.huge.build.stdlib=huge
+
+stc89.menu.vcc_mv.default=default
+stc89.menu.vcc_mv.v50=+5.0V
+stc89.menu.vcc_mv.v50.build.vcc=-DMENU_VCC=5000
+stc89.menu.vcc_mv.v33=+3.3V
+stc89.menu.vcc_mv.v33.build.vcc=-DMENU_VCC=3300
+
+stc89.menu.intlib.long=int+long
+stc89.menu.intlib.long.build.ilib=-llibint -lliblong
+stc89.menu.intlib.longlong=int+long+longlong
+stc89.menu.intlib.longlong.build.ilib=-llibint -lliblong -lliblonglong
+
+stc89.menu.floatlib.none=none
+stc89.menu.floatlib.none.build.extlib={build.ilib}
+stc89.menu.floatlib.none.build.print=-DUSE_PRINTF=3
+stc89.menu.floatlib.float=float
+stc89.menu.floatlib.float.build.extlib={build.ilib} -llibfloat
+stc89.menu.floatlib.float.build.print=-DUSE_PRINTF=2
+
+######################### end ####################################
