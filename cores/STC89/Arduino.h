@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
   Modified 2 February 2018 for MSC51 by huaweiwx 
+  Modified 2 February 2018 for stc89c52 by nulllab-jun
 */
 
 #ifndef Arduino_h
@@ -24,13 +25,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 #include <math.h>
-#include "utils/compatible.h"
-#include "xmacro.h"
-#include "mcu.h"
+//#include "utils/compatible.h"
+//#include "xmacro.h"
+#include "bsp/STC89C5xRC.h"
+#include <compiler.h>
 #include "pins_arduino.h"
-#include "bsp/bsp.h"
 
 // FIXME: workarounds for missing features or unimplemented functions
 // cancel out the PROGMEM attribute - used only for atmel CPUs
@@ -103,8 +106,8 @@ void yield(void);
 #define degrees(rad) ((rad)*RAD_TO_DEG)
 #define sq(x) ((x)*(x))
 
-#define interrupts()   sei()
-#define noInterrupts() cli()
+#define interrupts()   EA = 1
+#define noInterrupts() EA = 0
 
 #define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
 #define clockCyclesPerMillisecond() ( F_CPU / 1000L )
@@ -158,9 +161,6 @@ void yield(void);
 #define END_CRITICAL
 */
 
-
-
-
 // #define bit(b) (1UL << (b)) sdcc bit is __bit keywords
 
 //typedef bool        boolean;
@@ -175,19 +175,19 @@ void serialEvent(void);		// weak
 
 #include "wiring_digital.h"
 
-int analogRead(uint8_t pin);
-void analogReference(uint8_t mode);
-void analogWrite(uint8_t pin, int val);
+int analogRead(uint8_t);
+void analogReference(uint8_t);
+void analogWrite(uint8_t, int);
 
 #include "wiring.h"
 
-unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
-unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout);
+unsigned long pulseIn(uint8_t, uint8_t, unsigned long);
+unsigned long pulseInLong(uint8_t, uint8_t, unsigned long);
 
-void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
-uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
+//void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
+//uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
 
-void attachInterrupt(uint8_t, void (*)(void), int mode);
+void attachInterrupt(uint8_t, void (*)(void), int);
 void detachInterrupt(uint8_t);
 
 void setup(void);
@@ -216,6 +216,11 @@ void loop(void);
 
 #define NOT_A_PIN  0xff
 #define NOT_A_PORT 0xff
+#define ARDUINO_PINMASK   0x08
+#define ARDUINO_PORTMASK  0x80
+#define NOT_A_PORTPIN(x)  ((x)&(ARDUINO_PORTMASK|ARDUINO_PINMASK))
+#define IS_A_PIN(x)       !NOT_A_PORTPIN(x)
+
 
 #define NOT_AN_INTERRUPT -1
 

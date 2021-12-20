@@ -9,8 +9,8 @@ name=STC51 Boards
 # ----------------------------------
 # For Board Manager installs these variables are already predefined and will
 # not be overwritten. This assignment is done only for manual installs.
-runtime.tools.sdcc.path={runtime.hardware.path}/tools/sdcc
-runtime.tools.sduino.path={runtime.hardware.path}/tools/msys
+runtime.tools.51sdcc.path={runtime.hardware.path}/tools/sdcc
+runtime.tools.msc51_tools.path={runtime.hardware.path}/tools/mcs51tools
 
 # MCS51 compile variables
 # ---------------------
@@ -22,13 +22,13 @@ compiler.warning_flags.more=-Wp-Wall
 compiler.warning_flags.all=-Wp-Wall -V
 
 # Default "compiler.path" is correct, change only if you want to override the initial value
-compiler.path={runtime.tools.sdcc.path}/bin
-compiler.wrapper.path={runtime.tools.sduino.path}/wrapper
-compiler.wrapper.path.windows={runtime.tools.sduino.path}/win/bash" "{runtime.tools.sduino.path}/wrapper
-compiler.tools.path={runtime.tools.avr-gcc.path}/bin
+compiler.path={runtime.tools.51sdcc.path}/bin
+compiler.wrapper.path={runtime.tools.msc51_tools.path}/wrapper
+compiler.wrapper.path.windows={runtime.tools.msc51_tools.path}/win/busybox" ash "{runtime.tools.msc51_tools.path}/wrapper
+compiler.tools.path={runtime.tools.51sdcc.path}/bin
 
 compiler.c.cmd=sdcc
-compiler.c.wrapper=sdcc51.sh
+compiler.c.wrapper=sdcc.sh
 compiler.c.flags=-MMD -c -Ddouble=float -D__PROG_TYPES_COMPAT__ {compiler.warning_flags} --model-{build.stdlib} 
 compiler.c.elf.flags=--code-size {upload.maximum_size} --iram-size {upload.maximum_idata_size} --xram-size {upload.maximum_xdata_size} --model-{build.stdlib}
 
@@ -37,29 +37,28 @@ compiler.c.elf.wrapper=sdcc-link.sh
 compiler.S.flags=-c -g -x assembler-with-cpp -flto
 
 compiler.cpp.cmd=sdcc
-compiler.cpp.wrapper=sdcc51.sh
+compiler.cpp.wrapper=sdcc.sh
 compiler.cpp.flags={compiler.c.flags}
 
 compiler.ar.cmd=sdar
 compiler.ar.wrapper=sdar.sh
 compiler.ar.flags=rcs
 
-#compiler.objcopy.cmd=avr-objcopy
+compiler.objcopy.cmd=sdobjcopy
 #compiler.objcopy.eep.flags=-O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0
 #compiler.objcopy.eep.flags=-O ihex -j EEPROM EEPROM=0
 
-compiler.elf2hex.cmd=avr-objcopy
+compiler.elf2hex.cmd=sdobjcopy
 compiler.elf2hex.flags=-O ihex -R DATA -R INITIALIZED -R SSEG
 
-compiler.syslibs.stdlib.path={runtime.tools.sdcc.path}/share/sdcc
-compiler.syslibs.stdlib.path.windows={runtime.tools.sdcc.path}
+compiler.syslibs.stdlib.path.windows={runtime.tools.51sdcc.path}
 
 compiler.ldflags=
 
 compiler.size.cmd=grep
-compiler.size.wrapper=sdcc-size51.sh
+compiler.size.wrapper=sdcc-size.sh
 
-compiler.systemincludes="-I{build.path}/sketch" "-I{build.system.path}/{build.series}" "-I{build.system.path}/common" "-I{compiler.syslibs.stdlib.path}/inc" "-I{compiler.syslibs.stdlib.path}/include/msc51"
+compiler.includes="-I{compiler.syslibs.stdlib.path}/inc" "-I{compiler.syslibs.stdlib.path}/include/msc51"
 
 # This can be overridden in boards.txt
 build.extra_flags=
@@ -78,17 +77,18 @@ compiler.elf2hex.extra_flags=
 # --------------------
 
 ## Compile c files (re1)
-recipe.c.o.pattern="{compiler.wrapper.path}/{compiler.c.wrapper}" "{compiler.path}/{compiler.c.cmd}" "{source_file}" "{object_file}" re1 {compiler.c.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {build.vcc} {compiler.systemincludes} {includes}
+recipe.c.o.pattern="{compiler.wrapper.path}/{compiler.c.wrapper}" "{compiler.path}/{compiler.c.cmd}" "{source_file}" "{object_file}" re1 {compiler.c.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {build.vcc} {compiler.includes} {includes}
+#recipe.c.o.pattern="{compiler.path}/{compiler.c.cmd}" "{source_file}" "{object_file}" re1 {compiler.c.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.extra_flags} {build.vcc} {compiler.includes} {includes}
 
 ## Compile c++ files (re2)
-recipe.cpp.o.pattern="{compiler.wrapper.path}/{compiler.cpp.wrapper}" "{compiler.path}/{compiler.cpp.cmd}" "{source_file}" "{object_file}" re2 {compiler.cpp.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {build.vcc} {compiler.systemincludes} {includes}
+recipe.cpp.o.pattern="{compiler.wrapper.path}/{compiler.cpp.wrapper}" "{compiler.path}/{compiler.cpp.cmd}" "{source_file}" "{object_file}" re2 {compiler.cpp.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {build.vcc} {compiler.includes} {includes}
 
 ##FIXME Compile S files (re3)
-recipe.S.o.pattern="{compiler.path}/{compiler.c.cmd}" re3 {compiler.S.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.S.extra_flags} {build.extra_flags} {compiler.systemincludes} {includes} "{source_file}" -o "{object_file}"
+recipe.S.o.pattern="{compiler.path}/{compiler.c.cmd}" re3 {compiler.S.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.S.extra_flags} {build.extra_flags} {compiler.includes} {includes} "{source_file}" -o "{object_file}"
 
 ## Create archives (re4)
 #archive_file_path={build.path}/{archive_file}
-recipe.ar.pattern="{compiler.wrapper.path}/{compiler.ar.wrapper}" "{compiler.path}/{compiler.ar.cmd}" "{archive_file_path}" "{object_file}" re4  {compiler.ar.flags} {compiler.ar.extra_flags}
+recipe.ar.pattern="{compiler.wrapper.path}/{compiler.ar.wrapper}" "{compiler.path}/{compiler.ar.cmd}" "{archive_file_path}" "{object_file}" re4 {compiler.ar.flags} {compiler.ar.extra_flags}
 
 ## Combine gc-sections, archives, and objects
 recipe.c.combine.pattern="{compiler.wrapper.path}/{compiler.c.elf.wrapper}" "{compiler.path}/{compiler.c.elf.cmd}" --nostdlib "-L{build.path}" "-L{compiler.syslibs.stdlib.path}/lib/{build.stdlib}" {compiler.c.elf.flags} -mmcs51 -D{build.mcu} {compiler.c.elf.extra_flags} {object_files} "{build.path}/{archive_file}" "{build.path}/core/main.c.rel"  -lmcs51 -llibsdcc {build.extlib} --out-fmt-ihx -o "{build.path}/{build.project_name}.hex"
@@ -104,16 +104,16 @@ recipe.output.tmp_file.mem={build.project_name}.mem
 recipe.output.save_file.mem={build.project_name}.{build.variant}.mem
 
 ## Compute size
-recipe.size.pattern="{compiler.wrapper.path}/{compiler.size.wrapper}" "{runtime.tools.sduino.path}/win/{compiler.size.cmd}" "{build.path}/{build.project_name}.mem"
+recipe.size.pattern="{compiler.wrapper.path}/{compiler.size.wrapper}" "{runtime.tools.msc51_tools.path}/win/{compiler.size.cmd}" "{build.path}/{build.project_name}.mem"
 recipe.size.regex=^(?:HOME|GSINIT|GSFINAL|CODE|INITIALIZER)\s+([0-9]+).*
 recipe.size.regex.data=^(?:XSEG|PSEG|ISEG|BSEG)\s+([0-9]+).*
 recipe.size.regex.eeprom=^(?:EEPROM)\s+([0-9]+).*
 
 ## Preprocessor (re11, re12)
 preproc.includes.flags=-M -MG -MP
-recipe.preproc.includes="{compiler.path.wrapper}/{compiler.cpp.wrapper}" "{compiler.path}/{compiler.cpp.cmd}" re11 {compiler.cpp.flags} {preproc.includes.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DHIRC_VALUE={build.hirc} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {includes} "{source_file}"
+recipe.preproc.includes=asfaf"{compiler.path.wrapper}/{compiler.cpp.wrapper}" "{compiler.path}/{compiler.cpp.cmd}" re11 {compiler.cpp.flags} {preproc.includes.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DHIRC_VALUE={build.hirc} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {includes} "{source_file}"
 preproc.macros.flags=-E -MC
-recipe.preproc.macros="{compiler.wrapper.path}/{compiler.cpp.cmd}.sh" "{compiler.path}/{compiler.cpp.cmd}" "{source_file}" "{preprocessed_file_path}" re12 {compiler.cpp.flags} {preproc.macros.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {includes} {compiler.systemincludes}
+recipe.preproc.macros="{compiler.wrapper.path}/{compiler.cpp.cmd}.sh" "{compiler.path}/{compiler.cpp.cmd}" "{source_file}" "{preprocessed_file_path}" re12 {compiler.cpp.flags} {preproc.macros.flags} -mmcs51 -D{build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.extra_flags} {includes} {compiler.includes}
 
 # ------------------
 # stc_isp Uploader

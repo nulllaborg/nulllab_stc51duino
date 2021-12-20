@@ -25,10 +25,14 @@
   Modified 15 December 2016 by Michael Mayer
 
   Modified 2 February 2018 for mcs51 by huaweiwx
+  Review 2021 for stc89c52rc by nulllab-jun
 */
 
 #include "Arduino.h"
-
+#include "bsp/STC89C5xRC.h"
+#include "bsp/mcu.h"
+#include "bsp/compatible.h"
+#define MENU_SERIAL 1
 
 // private data //////////////////////////////////////////////////////////////
 
@@ -52,9 +56,19 @@ typedef struct {
 } RINGBUF_TypeDef;
 #endif
 
-extern void uart_init0(unsigned long baud);
+/*如果uart工作于模式0或模式2,此时可以不占用定时器*/
+void uart_init0(unsigned long baud)
+{
+    SCON = 0x50;            //8-bit variable UART
+    TMOD = 0x20;            //Set Timer1 as 8-bit auto reload mode
+    TH1 = TL1 = -(F_CPU/12/32/baud); //Set auto-reload vaule
+    TR1 = 1;                //Timer1 start run
+    ES = 1;                 //Enable UART interrupt
+    EA = 1;                 //Open master interrupt switch
+}
+//extern void uart_init0(unsigned long baud);
 
-static XDATA(RINGBUF_TypeDef,rxBuf);// = { { 0 }, 0, 0};
+static XDATA(RINGBUF_TypeDef, rxBuf);// = { { 0 }, 0, 0};
 static bool initialized; //=0 internal status. Returned on HardwareSerial()
 
 // private functions  ////////////////////////////////////////////////////////
@@ -83,7 +97,7 @@ static void storeChar(uint8_t c, RINGBUF_TypeDef *buf)
 
 #if (MENU_SERIAL == 1)
 #define InitialUARTx(x)  \
-  attachInterrupt(UART_IRQn,UART_IRQHandler,0); \
+  attachInterrupt(UART_IRQn, UART_IRQHandler, 0); \
   uart_init0(x)
 
 
@@ -146,7 +160,7 @@ void HardwareSerial_end(void)
 
 int HardwareSerial_available(void)
 {
-  unsigned int rtn;	
+  unsigned int rtn;
   noInterrupts();
   rtn = (rxBuf.size + rxBuf.head - rxBuf.tail) % rxBuf.size;
   interrupts();  
@@ -155,7 +169,7 @@ int HardwareSerial_available(void)
 
 int HardwareSerial_peek(void)
 {
-  int rtn;	
+  int rtn;
   noInterrupts();
   if (rxBuf.head == rxBuf.tail) {
     rtn = -1;
@@ -168,7 +182,7 @@ int HardwareSerial_peek(void)
 
 int HardwareSerial_read(void)
 {
-  int rtn;	
+  int rtn;
   noInterrupts();
   if (rxBuf.head == rxBuf.tail) {
     rtn = -1;

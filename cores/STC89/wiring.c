@@ -25,10 +25,11 @@
 
 #define  WIRING_MAIN
 #include "Arduino.h"
+#include "bsp/mcu.h"
+#include "bsp/STC89C5xRC.h"
+// #define USE_SYSTICK 1
 
 extern void SystemClock_Config(void);
-
-
 
 /****************  简单延时 **************************/
 void delay_loop(unsigned char cnt)
@@ -44,85 +45,85 @@ static volatile uint32_t dwTickCount = 0;
 /***************  Timer0 中断函数 *********************/
 void Timer0_IRQHandler (void) //1毫秒
 {
-	TH0 = TH0_INIT; TL0 = TL0_INIT;	//重载定时初值
-	TF0 = 0;		                //清除TF0标志
-	dwTickCount++;                  //systic 计数 
+    TH0 = TH0_INIT; TL0 = TL0_INIT; //重载定时初值
+    TF0 = 0;                        //清除TF0标志
+    dwTickCount++;                  //systic 计数 
 }
 
 void init(void){
-  SystemClock_Config();
-  dwTickCount = 0;
-  attachInterrupt(TIMER0_IRQn, Timer0_IRQHandler, 0);
-  TMOD = 0x01;                    //set timer0 as mode1 (16-bit)
-  TL0 = TL0_INIT;                 //initial timer0 low byte
-  TH0 = TH0_INIT;                 //initial timer0 high byte
-  TR0 = 1;                        //timer0 start running
-  ET0 = 1;                        //enable timer0 interrupt
-  EA = 1;                         //open global interrupt switch
+    SystemClock_Config();
+    dwTickCount = 0;
+    attachInterrupt(TIMER0_IRQn, Timer0_IRQHandler, 0);
+    TMOD = 0x01;                    //set timer0 as mode1 (16-bit)
+    TL0 = TL0_INIT;                 //initial timer0 low byte
+    TH0 = TH0_INIT;                 //initial timer0 high byte
+    TR0 = 1;                        //timer0 start running
+    ET0 = 1;                        //enable timer0 interrupt
+    EA = 1;                         //open global interrupt switch
 }
-	
+
 unsigned long millis()
 {
-	return dwTickCount;
+    return dwTickCount;
 }
 
 unsigned long micros()
 {
-	uint32_t m,u;
-	uint8_t  hi,lo;
-	
+    uint32_t m,u;
+    uint8_t  hi,lo;
+
     lo =  TL0; hi =  TH0; 
-	u = dwTickCount*1000;
-	
-	m = ((((hi<<8)| lo)- T1MS)*1000);
+    u = dwTickCount*1000;
+
+    m = ((((hi<<8)| lo)- T1MS)*1000);
     u += m/T1MS; 
-	
-	return u;
+
+    return u;
 }
 
 void delay(unsigned int ms){
-	uint32_t s = dwTickCount;
-	uint32_t e = s + ms;
-	if(e < s){
-	   while(e < millis());
-	}
+    uint32_t s = dwTickCount;
+    uint32_t e = s + ms;
+    if(e < s){
+       while(e < millis());
+    }
     while(millis()< e);
 }
 
 void delayMicroseconds(unsigned int us)
 {
-	uint32_t s = micros();
-	uint32_t e = s + us;
-	if(e < s){
-	   while(e < micros());
-	}
+    uint32_t s = micros();
+    uint32_t e = s + us;
+    if(e < s){
+       while(e < micros());
+    }
     while(micros()< e);
 }
 
 #else
 
 void init(void){
-  SystemClock_Config();
+    SystemClock_Config();
 }
 
 void delay10us(unsigned int us)
 {   
-	unsigned char i;
-	do{
+    unsigned char i;
+    do{
       DELAY_10US(i);
       while (--i);
-	}while(--us);
+    }while(--us);
 }
 
 void delay(unsigned int ms)
 {
-	unsigned char i, j;
-	
+    unsigned char i, j;
+
     do {
-	  DELAY_MS(i,j);
-  	  do {
-		 while (--j);
-	  } while (--i);
+      DELAY_MS(i,j);
+      do {
+         while (--j);
+      } while (--i);
     }while (--ms);
 }
 #endif

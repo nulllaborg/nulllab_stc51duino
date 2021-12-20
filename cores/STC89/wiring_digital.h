@@ -4,14 +4,15 @@
 #ifndef __WIRING_DIGITAL_H__
 #define __WIRING_DIGITAL_H__
 
-
+/*
 void pinMode(uint8_t pin, uint8_t mode);
 uint8_t portRead(uint8_t ucPort);
-void    digitalWriteHigh(uint8_t pin);
-void    digitalWriteLow(uint8_t pin);
-void    portWrite(uint8_t ucPort,uint8_t val);
-void    digitalWrite(uint8_t pin, bool val);
-void    digitalToggle(uint8_t pin);
-bool    digitalRead(uint8_t pin);
+void digitalWriteHigh(uint8_t pin);
+void digitalWriteLow(uint8_t pin);
+void portWrite(uint8_t ucPort,uint8_t val);
+void digitalWrite(uint8_t pin, bool val);
+void digitalToggle(uint8_t pin);
+bool digitalRead(uint8_t pin);
+*/
 
 #endif //__WIRING_DIGITAL_H__

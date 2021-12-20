@@ -35,27 +35,27 @@ uint8_t portRead(uint8_t ucPort){
 		   break;
 #endif
 #ifdef  SFR_P1
-        case 1:		   
+        case 1:
 		   rtn = P1;
 		   break;
 #endif
 #ifdef  SFR_P2
-        case 2:		   
+        case 2:
 		   rtn = P2;
 		   break;
 #endif
 #ifdef SFR_P3
-        case 3:		   
+        case 3:
 		   rtn = P3;
 		   break;
 #endif
 #ifdef SFR_P4
-        case 4:		   
+        case 4:
 		   rtn = P4;
 		   break;
 #endif
 #ifdef SFR_P5
-        case 5:		   
+        case 5:
 		   rtn = P5;
 		   break;
 #endif
@@ -71,35 +71,35 @@ void portWrite(uint8_t ucPort,uint8_t val){
 		   break;
 #endif
 #ifdef SFR_P1
-        case 1:		   
+        case 1:
 		   P1 = val;
 		   break;
 #endif
 #ifdef SFR_P2
-        case 2:		   
+        case 2:
 		   P2 = val;
 		   break;
 #endif
 #ifdef SFR_P3
-        case 3:		   
+        case 3:
 		   P3 = val;
 		   break;
 #endif
 #ifdef SFR_P4
-        case 4:		   
+        case 4:
 		   P4 = val;
 		   break;
 #endif
 #ifdef SFR_P5
-        case 5:		   
+        case 5:
 		   P5 = val;
 		   break;
 #endif
 	}
 }
 
-void digitalWriteHigh(uint8_t pin){
-	uint8_t ucPort,ucPin,mask;
+static void digitalWriteHigh(uint8_t pin){
+	uint8_t ucPort, ucPin,mask;
 	if(pin & 0x88) return;  /*0b10001000(0x88) is not a pin*/
 	ucPort = pin >>4;
 	ucPin =  pin & 0x07;
@@ -108,7 +108,7 @@ void digitalWriteHigh(uint8_t pin){
 	portWrite(ucPort,mask);
 }
 
-void digitalWriteLow(uint8_t pin){
+static void digitalWriteLow(uint8_t pin){
 	uint8_t ucPort,ucPin;
 	if(NOT_A_PORTPIN(pin)) return;  /*0b10001000(0x88) is not a pin*/
 	ucPort = pin >>4;

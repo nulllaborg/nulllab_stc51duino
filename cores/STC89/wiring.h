@@ -9,10 +9,12 @@
 #define USE_SYSTICK  1
 #endif
 
+#define CORE_STCYn 1
+
 #if CORE_STCYn > 1
  #define T1MS   (65536L-F_CPU/1000)      //1ms timer calculation method in 1T mode
 #elif CORE_STCYn == 1
- #define T1MS (65536L-F_CPU/12/1000)   //1ms timer calculation method in 12T mode
+ #define T1MS (65536L-F_CPU/12/1000)     //1ms timer calculation method in 12T mode
 #else
  #error NOT STC core or CORE_STCYn undef!	
 #endif

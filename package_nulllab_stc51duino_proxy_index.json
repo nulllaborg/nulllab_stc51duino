@@ -1,0 +1,74 @@
+{
+    "packages": [
+        {
+            "name": "STC51Duino",
+            "maintainer": "nulllab",
+            "websiteURL": "https://github.com/nulllaborg/nulllab_stc51duino",
+            "email": "nulljun@nulllab.cn ",
+            "help": {
+                "online": "www.nulllab.org"
+            },
+            "platforms" : [
+                {
+                    "name": "STC51Duino mcs51 plain C core (non-C++)",
+                    "architecture": "mcs51",
+                    "version": "0.0.1",
+                    "category": "Contributed",
+                    "boards": [
+                        {"name": "STC51 Boards"}
+                    ],
+                    "toolsDependencies": [
+                        {
+                            "name": "mcs51tools",
+                            "version": "2021.12.20",
+                            "packager": "STC51Duino"
+                        },
+                        {
+                            "name": "sdcc",
+                            "version": "v1.0",
+                            "packager": "STC51Duino"
+                        }
+                    ],
+                    "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/nulllab_stc51duino-0.0.1.zip",
+                    "archiveFileName": "nulllab_stc51duino-0.0.1.zip",
+                }
+            ],
+            "tools" : [
+                {
+                    "name": "mcs51tools",
+                    "version": "2021.12.20",
+                    "systems": [
+                        {
+                            "host": "i686-mingw32",
+                            "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/mcs51tools-i586-mingw32-v1.0.zip",
+                            "archiveFileName":"mcs51tools-i586-mingw32-v1.0.zip",
+                            "checksum": "SHA-256:b2e9e610a6b2fb719024a350b509f9a47340a835192b47f23d3cb34417c8f8d6",
+                            "size": "3232190"
+                        }
+                    ]
+                },
+                {
+                    "name": "sdcc",
+                    "version": "v1.0",
+                    "systems": [
+                        {
+                            "host": "i686-mingw32",
+                            "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-mcs51-i586-mingw32-v1.0.zip",
+                            "archiveFileName": "sdcc-mcs51-i586-mingw32-v1.0.zip",
+                            "checksum": "SHA-256:aa4566d6f908905cf3bf69cfd6db80bec7385a41fcfdf41ac95c86b6c7d64dd6",
+                            "size": "4405529"
+                        },{
+                            "host": "x86_64-apple-darwin",
+                            "url": "",
+                            "archiveFileName": "",
+                        },{
+                            "host": "x86_64-pc-linux-gnu",
+                            "url": "",
+                            "archiveFileName": "",
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -25,13 +25,13 @@
 
 // make sure to define prototypes for all used interrupts
 void init(void);
-void initVariant(void);		// weak
+//void initVariant(void);		// weak
 
 int main(void)
 {
-	init();
+	//init();
 
-	initVariant();
+	//initVariant();
 
 	setup();
     

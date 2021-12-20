@@ -23,6 +23,7 @@
 
 #include "Arduino.h"
 
+/*
 uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
 	uint8_t value = 0;
 	uint8_t i;
@@ -52,3 +53,4 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
 		digitalWriteLow(clockPin);		
 	}
 }
+*/

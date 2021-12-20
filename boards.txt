@@ -1,7 +1,7 @@
 menu.cpu=Processor
 menu.clock_source=Clock source(MHz)
 menu.cpu_speed=CPU Frequency(MHz)
-menu.mode=Mode
+menu.mode=Memory Model
 menu.intlib=Link libs
 menu.floatlib=float lib
 menu.userlib=user lib
@@ -17,11 +17,21 @@ stc89c52_duino.upload.maximum_idata_size=256
 stc89c52_duino.upload.maximum_xdata_size=8192
 
 stc89c52_duino.build.core=STC89
+stc89c52_duino.build.extlib=-llibint -lliblong
 stc89c52_duino.build.variant=STC89
 stc89c52_duino.build.board=stc89c52_duino 
 stc89c52_duino.build.mcu=STC89C52RC
 stc89c52_duino.build.clock_source=16M
 stc89c52_duino.build.f_cpu=16000000L
+
+stc89c52_duino.menu.mode.large=large
+stc89c52_duino.menu.mode.large.build.stdlib=large
+stc89c52_duino.menu.mode.small=small
+stc89c52_duino.menu.mode.small.build.stdlib=small
+stc89c52_duino.menu.mode.medium=medium
+stc89c52_duino.menu.mode.medium.build.stdlib=medium
+stc89c52_duino.menu.mode.huge=huge
+stc89c52_duino.menu.mode.huge.build.stdlib=huge
 
 ########################## STC8F ####################################
 stc8.name=STC8A/G/H/F
