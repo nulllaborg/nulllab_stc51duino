@@ -23,7 +23,8 @@
                         {"name": "STC89C52RC_Duino"},
                         {"name": "STC8A/G/H/F"},
                         {"name": "STC15F/L/W"},
-                        {"name": "STC12"}
+                        {"name": "STC12"},
+                        {"name": "STC89"}
                     ],
                     "toolsDependencies": [
                         {
@@ -62,17 +63,17 @@
                             "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-mingw32-v1.0.zip",
                             "archiveFileName": "sdcc-mingw32-v1.0.zip",
                             "checksum": "SHA-256:68f1eb6775aca6dfb68026dd8292cf4b3fc52921991fba56afc0a10a7cfe9be1",
-                            "size": ""
+                            "size": "4409341"
                         },{
                             "host": "x86_64-apple-darwin",
                             "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-macosx-v1.0.zip",
-                            "archiveFileName": "sdcc-macosx-v1.0.zip"
+                            "archiveFileName": "sdcc-macosx-v1.0.zip",
                             "checksum": "SHA-256:a35c86fed596b52d4e8e27bcb8f9f24506fac1cedbde3d61b50a5ed293d264f9",
                             "size": "3816529"
                         },{
                             "host": "x86_64-pc-linux-gnu",
                             "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-linux-v1.0.zip",
-                            "archiveFileName": "sdcc-linux-v1.0.zip"
+                            "archiveFileName": "sdcc-linux-v1.0.zip",
                             "checksum": "SHA-256:6ef5627753c0761238d717471ee003acc20d33447e3ec7c5adaa3ce2e3523594",
                             "size": "3816529"
                         }
