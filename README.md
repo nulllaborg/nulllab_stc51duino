@@ -15,7 +15,7 @@
 3、**工具->开发板->开发板管理**
 搜索STC51duino,选择最新版本安装（如果搜索不到，请安装arduino IDE1.8.15以上）
 
-![board_manage_zh](D:\arduino-1.8.18\hardware\stc_51duino\mcs51\doc\board_manage_zh.png)
+![board_manage_zh](./doc/board_manage_zh.png)
 
 4、**工具->开发板**
 ![](./doc/board_chioce.png)
