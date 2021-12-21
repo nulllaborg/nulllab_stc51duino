@@ -198,6 +198,84 @@ stc15.menu.floatlib.none.build.extlib={build.ilib}
 stc15.menu.floatlib.none.build.print=-DUSE_PRINTF=3
 
 
+########################## STC12 ####################################
+stc12.name=STC12C52/12C56/12C5A
+
+stc12.upload.tool=stc_isp
+stc12.upload.protocol=stc_isp
+stc12.upload.maximum_size=61440
+stc12.upload.maximum_idata_size=256
+stc12.upload.maximum_xdata_size=2048
+
+stc12.build.core=STC12
+stc12.build.series=STC12
+stc12.build.board=STC12
+
+stc12.menu.cpu.12C5a60s2=STC12C5A60S2
+stc12.menu.cpu.12C5a60s2.build.board=STC12C5A60S2
+stc12.menu.cpu.12C5a60s2.build.mcu=STC12C5A60S2
+stc12.menu.cpu.12C5a60s2.build.variant=STC12
+stc12.menu.cpu.12C5a60s2.upload.maximum_size=61440
+stc12.menu.cpu.12C5a60s2.upload.maximum_xdata_size=2048
+
+stc12.menu.clock_source.f27=IRC27M
+stc12.menu.clock_source.f27.build.f_cpu=27000000L -DHXT
+stc12.menu.clock_source.f24r=IRC24M
+stc12.menu.clock_source.f24r.build.f_cpu=24000000L -DHRC=1
+stc12.menu.clock_source.f12r=IRC12M
+stc12.menu.clock_source.f12r.build.f_cpu=12000000L -DHRC=2
+stc12.menu.clock_source.f06r=IRC6M
+stc12.menu.clock_source.f06r.build.f_cpu=6000000L -DHRC=4
+stc12.menu.clock_source.f25=OC25M
+stc12.menu.clock_source.f25.build.f_cpu=25000000L -DHXT
+stc12.menu.clock_source.f24=OC24M
+stc12.menu.clock_source.f24.build.f_cpu=24000000L -DHXT
+stc12.menu.clock_source.f22=OC22.1184M
+stc12.menu.clock_source.f22.build.f_cpu=22118400L -DHXT
+stc12.menu.clock_source.f20=OC20M
+stc12.menu.clock_source.f20.build.f_cpu=20000000L -DHXT
+stc12.menu.clock_source.f18=OC18.432M
+stc12.menu.clock_source.f18.build.f_cpu=18432000UL -DHXT
+stc12.menu.clock_source.f16=OC16M
+stc12.menu.clock_source.f16.build.f_cpu=16000000L -DHXT
+stc12.menu.clock_source.f12=OC12M
+stc12.menu.clock_source.f12.build.f_cpu=12000000L -DHXT
+stc12.menu.clock_source.f11=OC11.0592M
+stc12.menu.clock_source.f11.build.f_cpu=11059200L -DHXT
+stc12.menu.clock_source.f10=OC10M
+stc12.menu.clock_source.f10.build.f_cpu=10000000L -DHXT
+stc12.menu.clock_source.f08=OC8M
+stc12.menu.clock_source.f08.build.f_cpu=8000000L -DHXT
+stc12.menu.clock_source.f06=OC6M
+stc12.menu.clock_source.f06.build.f_cpu=6000000L -DHXT
+
+stc12.menu.mode.large=large
+stc12.menu.mode.large.build.stdlib=large
+stc12.menu.mode.small=small
+stc12.menu.mode.small.build.stdlib=small
+stc12.menu.mode.medium=medium
+stc12.menu.mode.medium.build.stdlib=medium
+stc12.menu.mode.huge=huge
+stc12.menu.mode.huge.build.stdlib=huge
+
+stc12.menu.vcc_mv.default=default
+stc12.menu.vcc_mv.v50=+5.0V
+stc12.menu.vcc_mv.v50.build.vcc=-DMENU_VCC=5000
+stc12.menu.vcc_mv.v33=+3.3V
+stc12.menu.vcc_mv.v33.build.vcc=-DMENU_VCC=3300
+
+stc12.menu.intlib.long=int+long
+stc12.menu.intlib.long.build.ilib=-llibint -lliblong
+stc12.menu.intlib.longlong=int+long+longlong
+stc12.menu.intlib.longlong.build.ilib=-llibint -lliblong -lliblonglong
+
+stc12.menu.floatlib.float=float
+stc12.menu.floatlib.float.build.extlib={build.ilib} -llibfloat
+stc12.menu.floatlib.float.build.print=-DUSE_PRINTF=2
+stc12.menu.floatlib.none=none
+stc12.menu.floatlib.none.build.extlib={build.ilib}
+stc12.menu.floatlib.none.build.print=-DUSE_PRINTF=3
+
 ########################## STC89C ####################################
 stc89.name=STC89CxRC/RD+
 

@@ -1,10 +1,10 @@
 {
     "packages": [
         {
-            "name": "STC51Duino",
+            "name": "STC51duino",
             "maintainer": "nulllab",
             "websiteURL": "https://github.com/nulllaborg/nulllab_stc51duino",
-            "email": "nulljun@nulllab.cn ",
+            "email": "nulljun@nulllab.cn",
             "help": {
                 "online": "www.nulllab.org"
             },
@@ -14,23 +14,29 @@
                     "architecture": "mcs51",
                     "version": "0.0.1",
                     "category": "Contributed",
+                    "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/nulllab_stc51duino-0.0.1.zip",
+                    "archiveFileName": "nulllab_stc51duino-0.0.1.zip",
+                    "help": {
+                    "online": "https://github.com/nulllab/nulllab_stc51duino/issues"
+                    },
                     "boards": [
-                        {"name": "STC51 Boards"}
+                        {"name": "STC89C52RC_Duino"},
+                        {"name": "STC8A/G/H/F"},
+                        {"name": "STC15F/L/W"},
+                        {"name": "STC12"}
                     ],
                     "toolsDependencies": [
                         {
                             "name": "mcs51tools",
                             "version": "2021.12.20",
-                            "packager": "STC51Duino"
+                            "packager": "STC51duino"
                         },
                         {
                             "name": "sdcc",
                             "version": "v1.0",
-                            "packager": "STC51Duino"
+                            "packager": "STC51duino"
                         }
-                    ],
-                    "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/nulllab_stc51duino-0.0.1.zip",
-                    "archiveFileName": "nulllab_stc51duino-0.0.1.zip",
+                    ]
                 }
             ],
             "tools" : [
@@ -42,8 +48,8 @@
                             "host": "i686-mingw32",
                             "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/mcs51tools-i586-mingw32-v1.0.zip",
                             "archiveFileName":"mcs51tools-i586-mingw32-v1.0.zip",
-                            "checksum": "SHA-256:b2e9e610a6b2fb719024a350b509f9a47340a835192b47f23d3cb34417c8f8d6",
-                            "size": "3232190"
+                            "checksum": "SHA-256:deb01e3bca29a068d999e08a810eb7fff6e4f5c9dec76f4ccd74f635e5e1d494",
+                            "size": "3232764"
                         }
                     ]
                 },
@@ -53,18 +59,22 @@
                     "systems": [
                         {
                             "host": "i686-mingw32",
-                            "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-mcs51-i586-mingw32-v1.0.zip",
-                            "archiveFileName": "sdcc-mcs51-i586-mingw32-v1.0.zip",
-                            "checksum": "SHA-256:aa4566d6f908905cf3bf69cfd6db80bec7385a41fcfdf41ac95c86b6c7d64dd6",
-                            "size": "4405529"
+                            "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-mingw32-v1.0.zip",
+                            "archiveFileName": "sdcc-mingw32-v1.0.zip",
+                            "checksum": "SHA-256:68f1eb6775aca6dfb68026dd8292cf4b3fc52921991fba56afc0a10a7cfe9be1",
+                            "size": ""
                         },{
                             "host": "x86_64-apple-darwin",
-                            "url": "",
-                            "archiveFileName": "",
+                            "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-macosx-v1.0.zip",
+                            "archiveFileName": "sdcc-macosx-v1.0.zip"
+                            "checksum": "SHA-256:a35c86fed596b52d4e8e27bcb8f9f24506fac1cedbde3d61b50a5ed293d264f9",
+                            "size": "3816529"
                         },{
                             "host": "x86_64-pc-linux-gnu",
-                            "url": "",
-                            "archiveFileName": "",
+                            "url": "https://github.com.cnpmjs.org/nulllaborg/nulllab_stc51duino/releases/download/v0.0.1/sdcc-linux-v1.0.zip",
+                            "archiveFileName": "sdcc-linux-v1.0.zip"
+                            "checksum": "SHA-256:6ef5627753c0761238d717471ee003acc20d33447e3ec7c5adaa3ce2e3523594",
+                            "size": "3816529"
                         }
                     ]
                 }
