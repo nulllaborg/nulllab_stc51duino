@@ -4,13 +4,14 @@
 # Modified by nulllab
 
 name=STC51 Boards
+version=0.0.1
 
 # General folder structure variables
 # ----------------------------------
 # For Board Manager installs these variables are already predefined and will
 # not be overwritten. This assignment is done only for manual installs.
-runtime.tools.51sdcc.path={runtime.hardware.path}/tools/sdcc
-runtime.tools.msc51_tools.path={runtime.hardware.path}/tools/mcs51tools
+#runtime.tools.sdcc.path={runtime.hardware.path}/tools/sdcc
+#runtime.tools.mcs51tools.path={runtime.hardware.path}/tools
 
 # MCS51 compile variables
 # ---------------------
@@ -22,10 +23,10 @@ compiler.warning_flags.more=-Wp-Wall
 compiler.warning_flags.all=-Wp-Wall -V
 
 # Default "compiler.path" is correct, change only if you want to override the initial value
-compiler.path={runtime.tools.51sdcc.path}/bin
-compiler.wrapper.path={runtime.tools.msc51_tools.path}/wrapper
-compiler.wrapper.path.windows={runtime.tools.msc51_tools.path}/win/busybox" ash "{runtime.tools.msc51_tools.path}/wrapper
-compiler.tools.path={runtime.tools.51sdcc.path}/bin
+compiler.path={runtime.tools.sdcc.path}/bin
+compiler.wrapper.path={runtime.tools.mcs51tools.path}/wrapper
+compiler.wrapper.path.windows={runtime.tools.mcs51tools.path}/win/busybox" ash "{runtime.tools.mcs51tools.path}/wrapper
+compiler.tools.path={runtime.tools.sdcc.path}/bin
 
 compiler.c.cmd=sdcc
 compiler.c.wrapper=sdcc.sh
@@ -51,7 +52,7 @@ compiler.objcopy.cmd=sdobjcopy
 compiler.elf2hex.cmd=sdobjcopy
 compiler.elf2hex.flags=-O ihex -R DATA -R INITIALIZED -R SSEG
 
-compiler.syslibs.stdlib.path.windows={runtime.tools.51sdcc.path}
+compiler.syslibs.stdlib.path.windows={runtime.tools.sdcc.path}
 
 compiler.ldflags=
 
@@ -104,7 +105,7 @@ recipe.output.tmp_file.mem={build.project_name}.mem
 recipe.output.save_file.mem={build.project_name}.{build.variant}.mem
 
 ## Compute size
-recipe.size.pattern="{compiler.wrapper.path}/{compiler.size.wrapper}" "{runtime.tools.msc51_tools.path}/win/{compiler.size.cmd}" "{build.path}/{build.project_name}.mem"
+recipe.size.pattern="{compiler.wrapper.path}/{compiler.size.wrapper}" "{runtime.tools.mcs51tools.path}/win/{compiler.size.cmd}" "{build.path}/{build.project_name}.mem"
 recipe.size.regex=^(?:HOME|GSINIT|GSFINAL|CODE|INITIALIZER)\s+([0-9]+).*
 recipe.size.regex.data=^(?:XSEG|PSEG|ISEG|BSEG)\s+([0-9]+).*
 recipe.size.regex.eeprom=^(?:EEPROM)\s+([0-9]+).*

@@ -8,14 +8,14 @@
 
 2、在附加开发板管理器网址输入如下网址：
 
-> https://cdn.jsdelivr.net/gh/nulllaborg/nulllab_stc51duino@main/package_nulllab_stc51duino_proxy_index.json
+> https://cdn.jsdelivr.net/gh/nulllaborg/nulllab_stc51duino/package_nulllab_stc51duino_proxy_index.json
 
 ![](./doc/option_zh.png)
 
 3、**工具->开发板->开发板管理**
 搜索STC51duino,选择最新版本安装（如果搜索不到，请安装arduino IDE1.8.15以上）
 
-![board_manage_zh](./doc/board_manage_zh.png)
+![board_manage_zh](./doc/board_manager_zh.png)
 
 4、**工具->开发板**
 ![](./doc/board_chioce.png)
@@ -27,7 +27,7 @@
 
 - [x] [开发STC8951C52_Duino学习型开发板]()
 - [ ] [开发STC公司8051系类单片机的ISP命令行工具开发]()
-- [ ] [完成STC8951C52RC+芯片的arduino api对接]()
+- [ ] [开发STC8951C52RC+芯片的arduino api对接]()
 - [ ] [开发STC15F2K60S2_Duino学习型开发板]()
 - [ ] [开发STC12C5A60S2_Duino学习型开发板]()
 - [ ] [开发STC8H8K64S4U_Duino学习型开发板]()
